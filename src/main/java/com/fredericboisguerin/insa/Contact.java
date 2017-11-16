@@ -5,16 +5,21 @@ public class Contact {
     String email;
     String phoneNumber;
 
-    public Contact(String name, String email, String phoneNumber){
+    public Contact(String name, String email, String phoneNumber) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
 
 
+
     @Override
     public String toString(){
-        String string = this.name;
+        String string = "";
+        if (name != null)
+        {
+            string += name ;
+        }
         if (email != null)
         {
            string += ", " + this.email;
