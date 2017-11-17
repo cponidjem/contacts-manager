@@ -3,9 +3,14 @@ import java.util.Scanner;
 
 public class UI {
 
-    public static void main(String [] arguments){
+    ContactsManager contactsManager;
 
-        ContactsManager contactsManager = new ContactsManager();
+    public UI(ContactsManager contactsManager){
+        this.contactsManager=contactsManager;
+    }
+
+    public void start(){
+
 
         int choix;
         Scanner sc = new Scanner(System.in);

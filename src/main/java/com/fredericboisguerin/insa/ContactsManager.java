@@ -5,10 +5,20 @@ import java.util.ArrayList;
 
 public class ContactsManager {
 
-    ArrayList<Contact> listContacts = new ArrayList<Contact>();
+    String nom;
+    FileManager fileManager ;
+    ArrayList<Contact> listContacts;
 
-    public void addContact(String name, String email, String phoneNumber) throws InvalidContactNameException, InvalidEmailException{
-        if(name==null || name==""){
+    public ContactsManager() throws java.lang.Exception{
+        nom = "test.csv";
+
+        fileManager = new FileManager(nom);
+
+        listContacts = fileManager.read_File();
+    }
+
+    public void addContact(String name, String email, String phoneNumber) throws InvalidContactNameException, InvalidEmailException, java.lang.Exception {
+        if(name==null || name.isEmpty()){
             throw new InvalidContactNameException();
         }
         if (email!=null && !email.contains("@") ){
@@ -16,6 +26,7 @@ public class ContactsManager {
         }
         Contact contact = new Contact(name, email, phoneNumber);
         listContacts.add(contact);
+        fileManager.append_File(contact);
 
     }
 
@@ -28,7 +39,10 @@ public class ContactsManager {
         if (i==0) {
             System.out.println("Pas de contact dans la liste");
         }
+
     }
+
+
 
     public void searchContactByName(String name) {
 
@@ -43,4 +57,7 @@ public class ContactsManager {
             System.out.println("Pas de contact pour ce nom");
         }
     }
+
+
+
 }
